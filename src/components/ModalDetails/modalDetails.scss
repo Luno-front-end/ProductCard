@@ -1,0 +1,72 @@
+.backddrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.474);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-container {
+  border-radius: 5px;
+  padding: 15px;
+
+  // width: 600px;
+  // min-width: 250px;
+
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: relative;
+}
+
+.wrapper-header {
+  text-align: center;
+}
+.header-modal {
+}
+.img-modal {
+  width: 300px;
+  min-width: 200px;
+}
+.wrapper-descrip {
+  text-align: center;
+}
+.desckrip-modal {
+}
+.wrapper-price {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 40px 0 40px;
+}
+.price-modal {
+}
+.raing-modal {
+}
+.wrapper-stock {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 2px;
+  border: 1px solid black;
+}
+.stock-modal {
+  margin: 0;
+  padding: 0;
+}
+.wrapper-info {
+  display: flex;
+  justify-content: center;
+}
+.brand-modal {
+  margin-right: 25px;
+}
+.category-modal {
+}
