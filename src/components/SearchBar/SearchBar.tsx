@@ -4,8 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNewProucts } from "../../hooks/useNewProucts";
 import { onLoading } from "../../Redux/slices/loader";
 import { onNotify, setStatusCodeAndMessage } from "../../Redux/slices/notify";
-import { clearPage, onSearch } from "../../Redux/slices/page";
-import { clearProducts, getNewProducts } from "../../Redux/slices/products";
+import { clearPage, onSearch, setPage } from "../../Redux/slices/page";
+import {
+  clearProducts,
+  getNewProducts,
+  onfetch,
+} from "../../Redux/slices/products";
 import { RootState } from "../../Redux/store";
 import Api from "../../services/FetchAPI";
 
@@ -13,7 +17,7 @@ import "./searchBar.scss";
 
 export const SearchBar: FC = () => {
   const [idTimeout, setIdTimeout] = useState<number>();
-  const value = useSelector((state: RootState) => state.page.value);
+  const page = useSelector((state: RootState) => state.page);
 
   const { getProductComponent } = useNewProucts();
 
@@ -25,10 +29,10 @@ export const SearchBar: FC = () => {
 
     dispatch(onSearch(val.trim()));
     const idTimer = setTimeout(async () => {
-      if (value.length > 3) {
+      if (val.length > 0) {
         dispatch(onLoading(true));
         dispatch(clearProducts());
-        const response = await Api.getProductsSearch(0, value)
+        const response = await Api.getProductsSearch(0, val)
           .finally(() => dispatch(onLoading(false)))
           .catch((err: AxiosError) => {
             dispatch(onNotify(true));
@@ -40,10 +44,12 @@ export const SearchBar: FC = () => {
               })
             );
           });
+        // dispatch(clearPage());
 
         dispatch(getNewProducts(response));
         return;
       }
+
       if (val === "") {
         dispatch(clearPage());
         dispatch(clearProducts());
@@ -57,7 +63,7 @@ export const SearchBar: FC = () => {
   return (
     <input
       type="text"
-      value={value}
+      value={page.value}
       placeholder="пошук"
       className="search-input"
       onChange={(e) => handleChenge(e)}

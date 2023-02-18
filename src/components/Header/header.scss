@@ -16,6 +16,9 @@
   position: relative;
 }
 .btn-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   top: 0;
   right: 0;

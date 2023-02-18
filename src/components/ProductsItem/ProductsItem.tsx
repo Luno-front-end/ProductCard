@@ -15,7 +15,7 @@ export const ProductsItem: FC<ProductsItemProps> = ({
   return (
     <li className="prouct-item" onClick={() => handleClick(product.id)}>
       <div>
-        <h1> Title: {product.title}</h1>
+        <h1> {product.title}</h1>
         <div className="wrapper-img">
           <img
             className="img-card"

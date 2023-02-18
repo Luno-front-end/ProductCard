@@ -33,9 +33,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns",
     "eject": "react-scripts eject"
   },
+  "transformIgnorePatterns": [
+    "node_modules/(?!@codemirror)/"
+  ],
   "eslintConfig": {
     "extends": [
       "react-app",

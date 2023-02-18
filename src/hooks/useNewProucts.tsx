@@ -9,6 +9,8 @@ import Api from "../services/FetchAPI";
 
 export const useNewProucts = () => {
   const products = useSelector((state: RootState) => state.products.products);
+  const page = useSelector((state: RootState) => state.page);
+
   const dispatch = useDispatch();
 
   const getProductComponent = async (val?: string, skip?: number) => {
@@ -25,8 +27,31 @@ export const useNewProucts = () => {
         );
       });
 
+    if (val !== "") {
+      const productsSearchState = await Api.getProductsSearch(
+        page.skip,
+        page.value
+      )
+        .finally(() => dispatch(onLoading(false)))
+        .catch((err: AxiosError) => {
+          dispatch(onNotify(true));
+          dispatch(
+            setStatusCodeAndMessage({
+              status: Number(err.response?.status),
+              erorrMessage: err.response?.statusText,
+            })
+          );
+        });
+      dispatch(onfetch(false));
+      dispatch(getNewProducts(productsSearchState));
+      dispatch(setPage(20));
+
+      return;
+    }
+
     if ((productsState.length !== 0 && val === "") || val === undefined) {
       dispatch(setPage(20));
+      dispatch(getNewProducts(productsState));
 
       dispatch(onfetch(false));
 

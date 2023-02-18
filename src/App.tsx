@@ -17,10 +17,10 @@ import { ModalDetails } from "./components/ModalDetails/ModalDetails";
 import { useModalDetailCard } from "./hooks/useModalDetailCard";
 import { useNewProucts } from "./hooks/useNewProucts";
 import { Notify } from "./Notify/Notify";
-import { ToastContainer, toast } from "react-toastify";
+import axiosMock from "./__mock__/axios";
 
 const App: FC = () => {
-  // const [erorr, setError] = useState<boolean>(false);
+  const [users, setUsers] = useState([]);
 
   const loading = useSelector((state: RootState) => state.loader);
   const page = useSelector((state: RootState) => state.page);
@@ -54,12 +54,13 @@ const App: FC = () => {
       dispatch(onfetch(true));
     }
   };
-
   return (
     <>
       {onErorr.activeNotify && <Notify />}
       <Header getProduct={getProductComponent} />
-      <Container>
+      <Container
+        className={activeModal ? "container activeModal" : "container"}
+      >
         <Routes>
           <Route
             path="/"
@@ -71,9 +72,10 @@ const App: FC = () => {
             }
           />
         </Routes>
+
         {loading && <Loader />}
+        {activeModal && <ModalDetails handleClick={handleClick} />}
       </Container>
-      {activeModal && <ModalDetails handleClick={handleClick} />}
     </>
   );
 };

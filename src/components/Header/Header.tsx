@@ -11,14 +11,12 @@ interface HeaderProps {
 export const Header: FC<HeaderProps> = ({ getProduct }) => {
   return (
     <div className="container-header">
-      <Container>
-        <form className="form-search">
-          <SearchBar />
-          <button type="submit" className="btn-search">
-            <BsSearch />
-          </button>
-        </form>
-      </Container>
+      <form className="form-search">
+        <SearchBar />
+        <div className="btn-search">
+          <BsSearch />
+        </div>
+      </form>
     </div>
   );
 };
