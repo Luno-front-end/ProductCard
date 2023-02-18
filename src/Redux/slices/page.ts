@@ -27,12 +27,8 @@ const pageSlice = createSlice({
   },
 });
 
-// export default basketSlice.reducer;
-// export const {  } = basketSlice.actions;
-
 export const { setPage, onSearch, clearPage } = pageSlice.actions;
 
-// Other code such as selectors can use the imported `RootState` type
 export const selectCount = (state: RootState) => state.page.skip;
 
 export default pageSlice.reducer;

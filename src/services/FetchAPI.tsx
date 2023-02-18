@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import axiosMock from "../__mock__/axios";
 
 import { IProduct } from "../types/types";

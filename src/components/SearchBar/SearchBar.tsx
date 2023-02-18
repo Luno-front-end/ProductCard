@@ -4,12 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNewProucts } from "../../hooks/useNewProucts";
 import { onLoading } from "../../Redux/slices/loader";
 import { onNotify, setStatusCodeAndMessage } from "../../Redux/slices/notify";
-import { clearPage, onSearch, setPage } from "../../Redux/slices/page";
-import {
-  clearProducts,
-  getNewProducts,
-  onfetch,
-} from "../../Redux/slices/products";
+import { clearPage, onSearch } from "../../Redux/slices/page";
+import { clearProducts, getNewProducts } from "../../Redux/slices/products";
 import { RootState } from "../../Redux/store";
 import Api from "../../services/FetchAPI";
 
@@ -29,7 +25,7 @@ export const SearchBar: FC = () => {
 
     dispatch(onSearch(val.trim()));
     const idTimer = setTimeout(async () => {
-      if (val.length > 0) {
+      if (val.length > 3) {
         dispatch(onLoading(true));
         dispatch(clearProducts());
         const response = await Api.getProductsSearch(0, val)
@@ -44,7 +40,6 @@ export const SearchBar: FC = () => {
               })
             );
           });
-        // dispatch(clearPage());
 
         dispatch(getNewProducts(response));
         return;

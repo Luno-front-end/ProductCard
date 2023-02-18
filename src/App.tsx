@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import "./app.scss";
@@ -17,11 +17,8 @@ import { ModalDetails } from "./components/ModalDetails/ModalDetails";
 import { useModalDetailCard } from "./hooks/useModalDetailCard";
 import { useNewProucts } from "./hooks/useNewProucts";
 import { Notify } from "./Notify/Notify";
-import axiosMock from "./__mock__/axios";
 
 const App: FC = () => {
-  const [users, setUsers] = useState([]);
-
   const loading = useSelector((state: RootState) => state.loader);
   const page = useSelector((state: RootState) => state.page);
 

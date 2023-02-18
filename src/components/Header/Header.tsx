@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { BsSearch } from "react-icons/bs";
-import { Container } from "../Container/Container";
 import { SearchBar } from "../SearchBar/SearchBar";
 import "./header.scss";
 
