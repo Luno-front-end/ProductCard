@@ -29,7 +29,7 @@ const App: FC = () => {
   const onErorr = useSelector((state: RootState) => state.notify);
 
   const { getProductComponent } = useNewProucts();
-  const { activeModal, handleClick } = useModalDetailCard();
+  const { handleClick } = useModalDetailCard();
 
   const dispatch = useDispatch();
 
@@ -55,9 +55,7 @@ const App: FC = () => {
     <>
       {onErorr.activeNotify && <Notify />}
       <Header getProduct={getProductComponent} />
-      <Container
-        className={activeModal ? "container activeModal" : "container"}
-      >
+      <Container className={"container"}>
         <Routes>
           <Route
             path="/"
@@ -71,7 +69,7 @@ const App: FC = () => {
         </Routes>
 
         {loading && <Loader />}
-        {activeModal && <ModalDetails handleClick={handleClick} />}
+        <ModalDetails handleClick={handleClick} />
       </Container>
     </>
   );

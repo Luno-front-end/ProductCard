@@ -1,6 +1,11 @@
 import { FC } from "react";
 import { IProduct } from "../../types/types";
 
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
+import CardActions from "@mui/material/CardActions";
+
 import "./productsItem.scss";
 
 interface ProductsItemProps {
@@ -13,24 +18,19 @@ export const ProductsItem: FC<ProductsItemProps> = ({
   handleClick,
 }) => {
   return (
-    <li className="prouct-item" onClick={() => handleClick(product.id)}>
-      <div>
-        <h1> {product.title}</h1>
-        <div className="wrapper-img">
-          <img
-            className="img-card"
-            src={product.thumbnail}
-            alt={product.title}
-          />
-        </div>
-      </div>
-      <div className="wrappr-contents">
-        <div>
-          <p>{product.brand}</p>
-          <p>{product.price}$</p>
-        </div>
-        <p>{product.rating}⭐️</p>
-      </div>
+    <li onClick={() => handleClick(product.id)} className="prouct-item">
+      <Card sx={{ maxWidth: 345 }} className="prouct-card">
+        <CardHeader title={product.title} subheader={`${product.price}$`} />
+        <CardMedia
+          component="img"
+          height="194"
+          image={product.thumbnail}
+          alt={product.title}
+        />
+        <CardActions disableSpacing>
+          <p>{product.rating}⭐️</p>
+        </CardActions>
+      </Card>
     </li>
   );
 };

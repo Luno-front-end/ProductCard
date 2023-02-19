@@ -1,17 +1,17 @@
 .prouct-item {
-  box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
-  padding: 10px;
-
   margin: 15px;
 
-  max-width: 320px;
-  min-width: 320px;
-  font-size: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  cursor: pointer;
 }
+
+.prouct-card {
+  width: 320px;
+  min-width: 320px;
+  height: 370px;
+
+  cursor: pointer;
+}
+
 .wrapper-img {
   width: 100%;
   height: 300px;
